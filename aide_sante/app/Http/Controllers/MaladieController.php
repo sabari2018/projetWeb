@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Maladie;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class MaladieController extends Controller
 {
@@ -14,7 +15,8 @@ class MaladieController extends Controller
      */
     public function index()
     {
-        //
+        $maladies = Maladie::all();
+        return view('backend.pages.maladie.index', compact('maladies'));
     }
 
     /**
@@ -38,13 +40,27 @@ class MaladieController extends Controller
         //
     }
 
+    public function import(Request $request){
+
+        $file = $request->file('data');
+        $datas = csvToArray($file);
+
+        foreach ($datas as $data){
+            $maladie = Maladie::firstOrNew(['libelle' => $data['libelle']]);
+
+            $maladie->save();
+        }
+
+        return redirect('admin/maladies');
+    }
+
     /**
      * Display the specified resource.
      *
-     * @param  \App\Maladie  $maladie
+     * @param  \App\Maladie  $malady
      * @return \Illuminate\Http\Response
      */
-    public function show(Maladie $maladie)
+    public function show(Maladie $malady)
     {
         //
     }
@@ -52,10 +68,10 @@ class MaladieController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Maladie  $maladie
+     * @param  \App\Maladie  $malady
      * @return \Illuminate\Http\Response
      */
-    public function edit(Maladie $maladie)
+    public function edit(Maladie $malady)
     {
         //
     }
@@ -64,22 +80,28 @@ class MaladieController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Maladie  $maladie
+     * @param  \App\Maladie  $malady
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Maladie $maladie)
+    public function update(Request $request)
     {
-        //
+        $malady = Maladie::findOrFail($request->id);
+
+        $malady->update($request->all());
+
+        return back();
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Maladie  $maladie
+     * @param  \App\Maladie  $malady
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Maladie $maladie)
+    public function destroy(Maladie $malady)
     {
-        //
+        $malady->delete();
+        return redirect('admin/maladies');
     }
+
 }

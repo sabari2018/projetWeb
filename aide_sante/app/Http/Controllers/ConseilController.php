@@ -14,7 +14,8 @@ class ConseilController extends Controller
      */
     public function index()
     {
-        //
+        $conseils = Conseil::paginate(4);
+        return view('backend.pages.conseil.index', compact('conseils'));
     }
 
     /**
@@ -24,7 +25,7 @@ class ConseilController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.conseil.add');
     }
 
     /**
@@ -35,7 +36,21 @@ class ConseilController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string|min:3|max:255',
+            'lien' => 'required|string|max:255'
+        ]);
+
+        $conseil = new Conseil;
+
+        $conseil->titre = $request['titre'];
+        $conseil->description = strip_tags($request['description']);
+        $conseil->lien = $request['lien'];
+
+        $conseil->save();
+
+        return redirect('admin/conseils');
     }
 
     /**
@@ -46,7 +61,7 @@ class ConseilController extends Controller
      */
     public function show(Conseil $conseil)
     {
-        //
+        return view('backend.pages.conseil.show', compact('conseil'));
     }
 
     /**
@@ -57,7 +72,7 @@ class ConseilController extends Controller
      */
     public function edit(Conseil $conseil)
     {
-        //
+        return view('backend.pages.conseil.edit', compact('conseil'));
     }
 
     /**
@@ -69,7 +84,21 @@ class ConseilController extends Controller
      */
     public function update(Request $request, Conseil $conseil)
     {
-        //
+        $this->validate($request, [
+            'titre' => 'required|string|max:255',
+            'description' => 'required|string|min:3|max:255',
+            'lien' => 'required|string|max:255'
+        ]);
+
+        $conseil = new Conseil;
+
+        $conseil->titre = $request['titre'];
+        $conseil->description = strip_tags($request['description']);
+        $conseil->lien = $request['lien'];
+
+        $conseil->save();
+
+        return redirect('admin/conseils');
     }
 
     /**
@@ -80,6 +109,7 @@ class ConseilController extends Controller
      */
     public function destroy(Conseil $conseil)
     {
-        //
+        $conseil->delete();
+        return redirect('admin/conseils');
     }
 }

@@ -14,7 +14,8 @@ class SymptomeController extends Controller
      */
     public function index()
     {
-        //
+        $symptomes = Symptome::all();
+        return view('backend.pages.symptome.index', compact('symptomes'));
     }
 
     /**
@@ -36,6 +37,20 @@ class SymptomeController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function import(Request $request){
+
+        $file = $request->file('data');
+        $datas = csvToArray($file);
+
+        foreach ($datas as $data){
+            $maladie = Symptome::firstOrNew(['libelle' => $data['libelle']]);
+
+            $maladie->save();
+        }
+
+        return redirect('admin/symptome');
     }
 
     /**
@@ -67,9 +82,13 @@ class SymptomeController extends Controller
      * @param  \App\Symptome  $symptome
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Symptome $symptome)
+    public function update(Request $request)
     {
-        //
+        $symptome = Symptome::findOrFail($request->id);
+
+        $symptome->update($request->all());
+
+        return back();
     }
 
     /**
@@ -80,6 +99,7 @@ class SymptomeController extends Controller
      */
     public function destroy(Symptome $symptome)
     {
-        //
+        $symptome->delete();
+        return redirect('admin/symptome');
     }
 }

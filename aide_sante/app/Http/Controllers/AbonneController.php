@@ -14,7 +14,7 @@ class AbonneController extends Controller
      */
     public function index()
     {
-        //
+        return view('backend.pages.abonne.index');
     }
 
     /**

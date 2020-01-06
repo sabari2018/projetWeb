@@ -14,7 +14,8 @@ class QuestionnaireController extends Controller
      */
     public function index()
     {
-        //
+        $questionnaires = Questionnaire::all();
+        return view('backend.pages.questionnaire.index', compact('questionnaires'));
     }
 
     /**
@@ -36,6 +37,20 @@ class QuestionnaireController extends Controller
     public function store(Request $request)
     {
         //
+    }
+
+    public function import(Request $request){
+
+        $file = $request->file('data');
+        $datas = csvToArray($file);
+
+        foreach ($datas as $data){
+            $maladie = Questionnaire::firstOrNew(['libelle' => $data['libelle']]);
+
+            $maladie->save();
+        }
+
+        return redirect('admin/questionnaires');
     }
 
     /**
@@ -67,9 +82,13 @@ class QuestionnaireController extends Controller
      * @param  \App\Questionnaire  $questionnaire
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Questionnaire $questionnaire)
+    public function update(Request $request)
     {
-        //
+        $questionnaire = Questionnaire::findOrFail($request->id);
+
+        $questionnaire->update($request->all());
+
+        return back();
     }
 
     /**
@@ -80,6 +99,7 @@ class QuestionnaireController extends Controller
      */
     public function destroy(Questionnaire $questionnaire)
     {
-        //
+        $questionnaire->delete();
+        return redirect('admin/questionnaires');
     }
 }

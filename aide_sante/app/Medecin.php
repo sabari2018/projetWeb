@@ -11,7 +11,9 @@ class Medecin extends Model
         'nom',
         'prenom',
         'specialite',
-        'adresse'
+        'adresse',
+        'email',
+        'photo',
     ];
 
     public function centreMedical(){
