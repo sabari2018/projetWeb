@@ -20,3 +20,9 @@ function csvToArray($filename = '', $delimiter = ';'){
 
     return $data;
 }
+
+function split_link($link){
+
+    $links = explode("embed/",$link);
+    return $links[1];
+}

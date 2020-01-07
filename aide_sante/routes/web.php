@@ -44,6 +44,9 @@ Route::post('/admin/questionnaires/import', 'QuestionnaireController@import')->n
 Route::patch('/admin/questionnaires/update','QuestionnaireController@update')->name('questionnaires.update');
 
 
+Route::resource('/admin/newsletters', 'NewsletterController');
+
+
 Route::get('/uploadfile', 'UpdaloadFileController@index');
 Route::post('/uploadfile', 'UpdaloadFileController@upload');
 
@@ -52,3 +55,5 @@ Route::post('/uploadfile', 'UpdaloadFileController@upload');
 Route::post('/autocomplete/fetch', 'SpecialiteController@fetch')->name('autocomplete.fetch');
 
 Route::get('/testFicher', 'MaladieController@ficher')->name('fichier');*/
+
+Route::post('/autocomplete/fetch', 'MedecinController@fetch')->name('autocomplete.fetch');

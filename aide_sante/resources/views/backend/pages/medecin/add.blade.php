@@ -43,9 +43,12 @@
                                 </div>
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="typeahead form-control form-control-user" name="specialite" id="exampleFirstName" placeholder="Specialite" value="{{old('specialite')}}" required>
+                                    <input type="text" class="typeahead form-control form-control-user" name="specialite" id="specialite" placeholder="Specialite" value="{{old('specialite')}}" required>
                                     <p class="text-danger">{{$errors->first('specialite')}}</p>
+                                    <div id="specialiteList"></div>
+
                                 </div>
+                                {{csrf_field()}}
                             </div>
 
                             <hr>

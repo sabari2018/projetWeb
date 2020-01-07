@@ -38,7 +38,7 @@ class ConseilController extends Controller
     {
         $this->validate($request, [
             'titre' => 'required|string|max:255',
-            'description' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:1000',
             'lien' => 'required|string|max:255'
         ]);
 
@@ -86,11 +86,9 @@ class ConseilController extends Controller
     {
         $this->validate($request, [
             'titre' => 'required|string|max:255',
-            'description' => 'required|string|min:3|max:255',
+            'description' => 'required|string|min:3|max:1000',
             'lien' => 'required|string|max:255'
         ]);
-
-        $conseil = new Conseil;
 
         $conseil->titre = $request['titre'];
         $conseil->description = strip_tags($request['description']);

@@ -116,7 +116,7 @@
         </a>
     </li>
     <li class="nav-item">
-            <a class="nav-link " href="#">
+            <a class="nav-link " href="{{route('newsletters.index')}}">
                 <i class="fas fa-fw fa-user-nurse"></i>
                 <span>Newsletter</span>
             </a>

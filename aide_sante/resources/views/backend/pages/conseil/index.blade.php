@@ -18,18 +18,16 @@
         @foreach($conseils as $conseil)
         <div class="col-lg-3 col-md-6 mb-4">
             <div class="card h-100">
-                <img class="card-img-top" src="http://placehold.it/500x325" alt="">
+                <img class="card-img-top" src="{{'https://img.youtube.com/vi/'.split_link($conseil->lien).'/0.jpg'}}" alt="">
                 <div class="card-body">
-                    <h4 class="card-title">{{$conseil->titre}}</h4>
+                    <h5 class="card-title text-info">{{$conseil->titre}}</h5>
                     <p class="card-text">{{ $conseil->description }}</p>
                 </div>
 
                 <div class="card-footer d-inline-block">
-
                     <div class="center-block">
                         <a href="{{route('conseils.show', $conseil)}}" class="btn btn-info btn-sm"><i class="fa fa-eye"></i></a>
                         <a href="{{route('conseils.edit', $conseil)}}" class="btn btn-dark btn-sm"><i class="fa fa-edit"></i></a>
-
                         <form action="{{route('conseils.destroy', $conseil)}}" method="post" class="btn-custom">
                             {{ csrf_field() }}
                             {{ method_field('delete') }}
@@ -38,10 +36,7 @@
                                 <i class="fa fa-trash"></i>
                             </button>
                         </form>
-
-                        {{--<input type="reset" class="btn btn-danger btn-user" onclick="window.location='{{route('conseils')}}'" value="Annuler">--}}
                     </div>
-
                 </div>
             </div>
         </div>

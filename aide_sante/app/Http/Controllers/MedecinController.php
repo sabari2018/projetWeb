@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Medecin;
+use App\Specialite;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class MedecinController extends Controller
 {
@@ -32,6 +34,23 @@ class MedecinController extends Controller
     {
         return view('backend.pages.medecin.add');
     }
+
+    public function fetch(Request $request){
+        if ($request->get('querry')){
+            $data = DB::table('specialites')
+                ->where('libelle', 'LIKE','%{$query}')
+                ->get();
+
+            $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
+
+            foreach ($data as $row){
+                $output .= '<li><a href="#">'.$row->libelle.'.</a></li>';
+            }
+            $output .= '<//ul>';
+            echo $output;
+        }
+    }
+
 
     /**
      * Store a newly created resource in storage.
