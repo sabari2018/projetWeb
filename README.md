@@ -44,3 +44,5 @@ Pour creer la base de donnees faire :
 ```
 $ php artisan migrate
 ```
+Compte admin : admin@gmail.com
+Mot de passe admin : 123456
