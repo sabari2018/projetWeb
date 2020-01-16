@@ -7,6 +7,12 @@ use Illuminate\Http\Request;
 
 class SymptomeController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,27 +22,6 @@ class SymptomeController extends Controller
     {
         $symptomes = Symptome::all();
         return view('backend.pages.symptome.index', compact('symptomes'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     public function import(Request $request){
@@ -53,27 +38,6 @@ class SymptomeController extends Controller
         return redirect('admin/symptome');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Symptome  $symptome
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Symptome $symptome)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Symptome  $symptome
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Symptome $symptome)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.

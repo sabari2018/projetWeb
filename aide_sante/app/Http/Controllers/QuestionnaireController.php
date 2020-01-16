@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 
 class QuestionnaireController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,16 +21,6 @@ class QuestionnaireController extends Controller
     {
         $questionnaires = Questionnaire::all();
         return view('backend.pages.questionnaire.index', compact('questionnaires'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
     }
 
     /**
@@ -51,28 +46,6 @@ class QuestionnaireController extends Controller
         }
 
         return redirect('admin/questionnaires');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Questionnaire  $questionnaire
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Questionnaire $questionnaire)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Questionnaire  $questionnaire
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Questionnaire $questionnaire)
-    {
-        //
     }
 
     /**

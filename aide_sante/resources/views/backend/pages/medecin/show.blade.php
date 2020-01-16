@@ -14,13 +14,27 @@
         <div class="card-body">
             <div class="well well-sm">
                 <div class="row">
-                    <div class="col-sm-6 col-md-4 ">
-                        <img src="/profiles/{{$medecin->photo}}" alt="{{$medecin->nom .' '. $medecin->prenom}}" width="200" height="200" class="img-responsive" />
-                        <p>
-                            <a href="#">
-                                <i class="fa fa-edit"></i> Modifier
-                            </a>
-                        </p>
+                    <div class="col-sm-6 col-md-4">
+                        <img src="/profiles/{{$medecin->photo}}" alt="{{$medecin->nom .' '. $medecin->prenom}}" id="medecin_photo" width="200" height="200" class="img-responsive" />
+
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" value="" id="my_checkbox" required>
+                            <label class="form-check-label" for="my_checkbox">
+                                Modifier
+                            </label>
+                        </div>
+                            <div class="row btn-block">
+
+                                <form action="{{route('update.medhoto')}}" method="POST" enctype="multipart/form-data">
+                                    {{csrf_field()}}
+                                    <input type="file" name="file" id="file" style="display: none">
+                                    <input type="hidden" id="medecin_id" name="medecin_id" value="{{$medecin->id}}">
+                                    <input type="submit" id="uplade_fic" style="display: none" class="btn btn-facebook btn-sm btn-import" value="+" >
+                                </form>
+
+                             </div>
+                        <p id="erreur_file"></p>
+
                     </div>
                     <div class="col-sm-6 col-md-8">
                         <h5>Dr {{$medecin->nom .' '. $medecin->prenom}}</h5>

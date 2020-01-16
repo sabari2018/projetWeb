@@ -15,7 +15,13 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email',
+        'nom',
+        'prenom',
+        'adresse',
+        'photo',
+        'date_naissance',
+        'password',
     ];
 
     /**
@@ -27,13 +33,8 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function medecin(){
+    public function typeUser(){
 
-        return $this->hasOne(Medecin::class);
-    }
-
-    public function abonne(){
-
-        return $this->hasOne(Abonne::class);
+        return $this->belongsTo(TypeUser::class);
     }
 }

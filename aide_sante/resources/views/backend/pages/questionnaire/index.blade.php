@@ -6,12 +6,11 @@
     </div>
 
     <div class="d-flex flex-row-reverse align-items-center justify-content-between mb-4">
-        <a href="{{route('questionnaires.create')}}" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fas fa-book-medical fa-sm text-white-50"></i> Ajouter </a>
 
         <form class="user" method="POST" action="{{route('questionnaires.import')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="file" name="data"/>
-            <input type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" value="Importer">
+            <input type="file" name="data" id="importer"/>
+            <input type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-import" value="Importer">
         </form>
     </div>
 
@@ -54,7 +53,7 @@
                                         <i class="fa fa-edit"></i>
                                     </button>
 
-                                    <form action="{{route('questionnaires.destroy', $questionnaire)}}" method="post" class="btn-sm">
+                                    <form action="{{route('questionnaires.destroy', $questionnaire)}}" method="post" class="btn-custom">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
                                         <button type="submit" class="btn btn-danger btn-sm btn-circle"

@@ -18,6 +18,7 @@ class CreateConseilsTable extends Migration
             $table->string('titre');
             $table->string('description');
             $table->string('lien');
+            $table->integer('active')->nullable();
 
             $table->timestamps();
         });

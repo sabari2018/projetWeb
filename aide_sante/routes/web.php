@@ -11,13 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+Route::get('/', 'AccueilleController@index');
+Route::get('/home', 'AccueilleController@index');
+
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/admin/home', 'AdminController@index')->name('home');
 
 Route::get('/admin', 'AdminController@index')->name('admin');
 
@@ -26,7 +27,6 @@ Route::post('/admin/symptome/import', 'SymptomeController@import')->name('sympto
 Route::patch('/admin/symptome/update', 'SymptomeController@update')->name('symptome.update');
 
 Route::resource('/admin/abonnes', 'AbonneController');
-Route::get('/admin/abonnes', 'AbonneController@index')->name('abonnes');
 
 Route::resource('/admin/medecins', 'MedecinController');
 Route::post('/admin/medecins/import', 'MedecinController@import')->name('medecin.import');
@@ -45,15 +45,31 @@ Route::patch('/admin/questionnaires/update','QuestionnaireController@update')->n
 
 
 Route::resource('/admin/newsletters', 'NewsletterController');
+Route::resource('/admin/actualites', 'ActualiteController');
+
+
+/* FRONT*/
+
+Route::get('/front','AccueilleController@index');
+Route::post('/front','AccueilleController@store')->name('accueil.store');
+
+Route::get('/frontend','AccueilleController@index')->name('accueil');
+Route::post('/frontend','AccueilleController@store')->name('contact');
+Route::get('/frontend/conseils/{conseil}','AccueilleController@showConseil')->name('conseil_astuce');
+Route::get('/frontend/actualites/{actualite}','AccueilleController@showNews')->name('actualite');
+Route::resource('/frontend/register', 'RegisterAbonnesController');
+
+Route::get('/refresh_captcha','RegisterAbonnesController@refreshCaptcha')->name('refresh_captcha');
+
 
 
 Route::get('/uploadfile', 'UpdaloadFileController@index');
 Route::post('/uploadfile', 'UpdaloadFileController@upload');
 
 
-/*Route::get('/autocomplete', 'SpecialiteController@index');
-Route::post('/autocomplete/fetch', 'SpecialiteController@fetch')->name('autocomplete.fetch');
-
-Route::get('/testFicher', 'MaladieController@ficher')->name('fichier');*/
-
 Route::post('/autocomplete/fetch', 'MedecinController@fetch')->name('autocomplete.fetch');
+
+Route::get('/login', 'LogintestController@index')->name('login');
+Route::post('/login/verifiemail', 'LogintestController@checkEmail')->name('login.email');
+Route::post('/medecin/photo', 'MedecinController@updatePhoto')->name('update.medhoto');
+

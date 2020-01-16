@@ -15,17 +15,7 @@ class AddForeignsKeyToUsers extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
 
-            $table->integer('medecin_id')->unsigned();
-            $table->foreign('medecin_id')->references('id')->on('medecins')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->integer('abonne_id')->unsigned();
-            $table->foreign('abonne_id')->references('id')->on('abonnes')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
-
-            $table->integer('type_user_id')->unsigned();
+            $table->integer('type_user_id')->unsigned()->nullable();
             $table->foreign('type_user_id')->references('id')->on('type_users')
                 ->onDelete('cascade')
                 ->onUpdate('cascade');

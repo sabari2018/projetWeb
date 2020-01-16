@@ -11,6 +11,10 @@ class UpdaloadFileController extends Controller
         return view('backend.testImage.index');
     }
 
+    /** Fonction qui permet d'uploader un fichier
+     * @param Request $request
+     * @return \Illuminate\Http\RedirectResponse
+     */
     public function upload(Request $request){
         $this->validate($request, [
             'select_file'  => 'required|image|mimes:jpg,png,gif|max:2048'

@@ -9,8 +9,8 @@
 
         <form class="user" method="POST" action="{{route('medecin.import')}}" enctype="multipart/form-data">
             {{ csrf_field() }}
-            <input type="file" name="data"/>
-            <input type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm" value="Importer">
+            <input type="file" name="data" id="importer"/>
+            <input type="submit" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm btn-import" value="Importer">
         </form>
     </div>
 
@@ -18,7 +18,7 @@
 
     <div class="card shadow mb-3">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Liste des Medecins de la plateforme </h6>
+            <h6 class="m-0 font-weight-bold text-primary">Liste des utilisateurs de la plateforme </h6>
         </div>
         <div class="card-body">
             @if(count($medecins) === 0)
@@ -30,6 +30,7 @@
                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                         <tr>
+                            <th>No</th>
                             <th>Nom</th>
                             <th>Prenom</th>
                             <th>Email</th>
@@ -39,6 +40,7 @@
                         </thead>
                         <tfoot>
                         <tr>
+                            <th>No</th>
                             <th>Nom</th>
                             <th>Prenom</th>
                             <th>Email</th>
@@ -47,8 +49,9 @@
                         </tr>
                         </tfoot>
                         <tbody>
-                        @foreach($medecins as $medecin)
+                        @foreach($medecins as $index => $medecin)
                             <tr>
+                                <td>{{$index + 1}}</td>
                                 <td>{{$medecin->nom}}</td>
                                 <td>{{$medecin->prenom}}</td>
                                 <td>{{$medecin->email}}</td>
@@ -62,7 +65,7 @@
                                         <i class="fa fa-edit "></i>
                                     </a>
 
-                                    <form action="{{route('medecins.destroy', $medecin)}}" method="post" class="btn-sm">
+                                    <form action="{{route('medecins.destroy', $medecin)}}" method="post" class="btn-custom">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
                                         <button type="submit" class="btn btn-danger btn-sm btn-circle"

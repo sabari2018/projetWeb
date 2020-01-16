@@ -1,3 +1,9 @@
+.alert-info {
+    color: #1c606a;
+    background-color: #f8f9fc;
+    border-color: #c7ebf1;
+}
+
 .profil {
     width: 50px;
     border: 1px solid black;
@@ -13,6 +19,10 @@ small {
     line-height: 1.928571429;
     color: #999;
 
+}
+
+.tab-content-perso{
+    margin-top: 3%;
 }
 
 .progress { position:relative; width:100%; border: 1px solid #7F98B2; padding: 1px; border-radius: 3px; }
@@ -58,4 +68,34 @@ form.btn-custom{
     line-height: 1.5;
     border-radius: .35rem;
     transition: color .15s ease-in-out,background-color .15s ease-in-out,border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+
+#content{
+    background:url('../../vendor/boxed-bg.jpg');
+}
+
+#actu_content{
+    padding-left: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+}
+
+#actu_card{
+    margin-bottom: 3%;
+}
+
+#conseil_list{
+    margin: 2%;
+}
+
+#astuces{
+    background-color: #fafafa;
+}
+
+#form_deconnect_user{
+    display: none;
+}
+
+#register_content{
+    margin-top: 5%;
 }

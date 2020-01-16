@@ -4,11 +4,19 @@ namespace App\Http\Controllers;
 
 use App\Medecin;
 use App\Specialite;
+use Faker\Provider\File;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class MedecinController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -18,11 +26,9 @@ class MedecinController extends Controller
     {
         $medecins = Medecin::all();
         return view('backend.pages.medecin.index', compact('medecins'));
-
-       /*$file = public_path('test.csv');
-       $data = csvToArray($file);
-       dd($data);*/
     }
+
+
 
 
     /**
@@ -35,20 +41,41 @@ class MedecinController extends Controller
         return view('backend.pages.medecin.add');
     }
 
-    public function fetch(Request $request){
-        if ($request->get('querry')){
+    function fetch(Request $request)
+    {
+        if($request->get('query'))
+        {
+            $query = $request->get('query');
             $data = DB::table('specialites')
-                ->where('libelle', 'LIKE','%{$query}')
+                ->where('libelle', 'LIKE', "%{$query}%")
                 ->get();
-
             $output = '<ul class="dropdown-menu" style="display:block; position:relative">';
-
-            foreach ($data as $row){
-                $output .= '<li><a href="#">'.$row->libelle.'.</a></li>';
+            foreach($data as $row)
+            {
+                $output .= '<li><a href="#">'.$row->libelle.'</a></li>';
             }
-            $output .= '<//ul>';
+            $output .= '</ul>';
             echo $output;
         }
+    }
+
+    public function updatePhoto(Request $request){
+
+        $medecin = Medecin::findOrFail($request->medecin_id);
+
+        $old = $medecin->photo;
+        if ($old !== 'default.png')
+            Storage::delete(public_path($old));
+
+        $photo = $request->file('file');
+
+        $new_name = rand().'.'.$photo->getClientOriginalExtension();
+        $photo->move(public_path('profiles'), $new_name);
+
+        $medecin->photo = $new_name;
+        $medecin->save();
+
+        return redirect('admin/medecins/'.$medecin->id);
     }
 
 

@@ -20,9 +20,4 @@ class Medecin extends Model
 
         return $this->belongsTo(CentreMedical::class);
     }
-
-    public function user(){
-
-        return $this->belongsTo(User::class);
-    }
 }

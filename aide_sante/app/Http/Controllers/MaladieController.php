@@ -8,6 +8,12 @@ use Illuminate\Support\Facades\Storage;
 
 class MaladieController extends Controller
 {
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -17,27 +23,6 @@ class MaladieController extends Controller
     {
         $maladies = Maladie::all();
         return view('backend.pages.maladie.index', compact('maladies'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
     }
 
     public function import(Request $request){
@@ -52,28 +37,6 @@ class MaladieController extends Controller
         }
 
         return redirect('admin/maladies');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Maladie  $malady
-     * @return \Illuminate\Http\Response
-     */
-    public function show(Maladie $malady)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Maladie  $malady
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Maladie $malady)
-    {
-        //
     }
 
     /**

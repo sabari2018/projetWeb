@@ -38,17 +38,21 @@
                             </div>
                             <div class="form-group row">
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input class="date form-control form-control-user" type="text" name="date_naissance" placeholder="Date de Naissance">
+                                    <input class="date form-control form-control-user" type="text" id="date" name="date_naissance" placeholder="Date de Naissance">
                                     <p class="text-danger">{{$errors->first('date_naissance')}}</p>
                                 </div>
 
                                 <div class="col-sm-6 mb-3 mb-sm-0">
-                                    <input type="text" class="typeahead form-control form-control-user" name="specialite" id="specialite" placeholder="Specialite" value="{{old('specialite')}}" required>
-                                    <p class="text-danger">{{$errors->first('specialite')}}</p>
-                                    <div id="specialiteList"></div>
+
+                                    <div class="form-group row">
+                                        <input type="text" name="specialite" id="libelle" class="form-control form-control-user" placeholder="Specialite" value="{{old('specialite')}}" required />
+                                        <p class="text-danger">{{$errors->first('specialite')}}</p>
+                                        <div id="specialiteList">
+                                        </div>
+                                    </div>
+                                    {{ csrf_field() }}
 
                                 </div>
-                                {{csrf_field()}}
                             </div>
 
                             <hr>
@@ -61,6 +65,7 @@
                             </div>
 
                             <hr>
+
                             <div class="btn-group-justified">
                                 <input type="submit" class="btn btn-primary btn-user" value="Valider">
                                 <input type="reset" class="btn btn-danger btn-user" onclick="window.location='{{route('medecins.index')}}'" value="Annuler">
