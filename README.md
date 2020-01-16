@@ -48,7 +48,9 @@ Compte admin : admin@gmail.com
 Mot de passe admin : 123456
 
 ## 2. Technologies utilisees
+```
   1 - HTML5
   2 - CSS
   3 - JavaScript (JQuery & Ajax)
   4 - MailChimp
+  ```
