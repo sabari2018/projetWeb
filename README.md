@@ -3,8 +3,6 @@ Projet en Programmation Web utilisant le framework Laravel (v.5.5)
 ## A propos de AlloDocdeur
 
 AlloDocdeur est une application web permettant d'effectuer aux visiteurs de consulter des videos d'astuces et conseils sur la Sante et le bien-etre, en plus permettre aux abonnees de faire des test de diagnostiques de Sante. 
-L'application dispose de deux principales fonctionnalités : la ## <b>gestion de course et la gestion de produits</b>. 
-L'utilisateur simple peut créer, modifier ou supprimer une course. Tandis que l'administrateur peut gérer la liste de produits mais aussi la liste des courses de l'ensemble des utilisateurs.
 
 ## Installation et  utilisation du projet
 ## 1. Installation
