@@ -46,7 +46,3 @@ Pour creer la base de donnees faire :
 ```
 $ php artisan migrate
 ```
-
-
-Vous pouvez avoir un apperçu du projet qui est hébergé sur heroku : 
-http://course-appli.herokuapp.com
